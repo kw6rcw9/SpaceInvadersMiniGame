@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AmmoSystem
@@ -5,29 +8,37 @@ namespace AmmoSystem
     [RequireComponent(typeof(Rigidbody2D))]
     public class Bullet : MonoBehaviour
     {
+        [SerializeField] private int damage;
         [SerializeField] private float speed;
-        private Rigidbody2D _rb;
-
-        private void Awake()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-        }
-
+        [SerializeField] private Rigidbody2D rb;
+     
+        
         private void Update()
         {
             MoveForward();
+            StartCoroutine(Lifetime());
         }
 
         private void MoveForward()
         {
-            _rb.AddForce(transform.up * speed * Time.deltaTime, ForceMode2D.Impulse);
+            rb.AddForce(transform.up * speed * Time.deltaTime, ForceMode2D.Impulse);
             
         }
 
-        private void OnCollisionEnter(Collision collision)
+       
+
+        private void OnCollisionEnter2D(Collision2D col)
         {
-            if(collision.gameObject.layer != 6)
+            if ( col.gameObject.layer == 7)
+            {
                 Destroy(gameObject);
+            }
+        }
+
+        IEnumerator Lifetime()
+        {
+            yield return new WaitForSeconds(2f);
+            Destroy(gameObject);
         }
     }
 }
