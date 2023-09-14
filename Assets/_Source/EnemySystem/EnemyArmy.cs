@@ -1,18 +1,23 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyArmyInvoker : MonoBehaviour
+namespace EnemySystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public class EnemyArmy
     {
-        
-    }
+        public  void ArmyLogic(List<GameObject> list, float speed, GameObject enemyPrefab, Transform spawnPoint)
+        {
+            
+            
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void EnemyInit(List<GameObject> enemyPrefabs, Transform spawnPoint)
+        {
+            foreach (GameObject enemyPref in enemyPrefabs)
+            {
+                GameObject enemy = GameObject.Instantiate(enemyPref, spawnPoint);
+                
+            }
+        }
     }
 }
