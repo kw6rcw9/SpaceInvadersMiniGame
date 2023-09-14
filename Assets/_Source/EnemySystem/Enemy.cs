@@ -8,12 +8,12 @@ namespace EnemySystem
     {
         [SerializeField] private int hp;
         
-        private void TakeDamage(int damage)
+        /*private void TakeDamage(int damage)
         {
             Debug.Log("dd");
             if(hp <= 0)
                 Destroy(gameObject);
             hp -= damage;
-        }
+        }*/
     }
 }
