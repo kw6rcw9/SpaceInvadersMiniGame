@@ -6,14 +6,18 @@ using Random = UnityEngine.Random;
 
 namespace EnemySystem
 {
-    public class EnemyArmy
+    public class EnemyArmy: IArmyLogic
     {
-        private bool _isGenerated = false;
-        private List<GameObject> _enemies = new List<GameObject>();
+        //private bool _isGenerated = false;
+        private List<GameObject> _enemies;
+        //private GameObject _parent = new ;
+       
 
-        public  void ArmyGenerator(float speed, GameObject enemyPrefab, List<Transform> spawnPoints, bool isRandom)
+        public List<GameObject> ArmyGenerator( GameObject enemyPrefab, List<Transform> spawnPoints, bool isRandom)
         {
-            
+
+            _enemies = new List<GameObject>();
+
             
             if (isRandom)
             {
@@ -21,25 +25,29 @@ namespace EnemySystem
                 {
                     int rnd = Random.Range(0, 2);
                     if (rnd == 1)
+                    {
                         EnemyInit(enemyPrefab, point);
+                        
+                    }
                 }
-
-                _isGenerated = true;
+                
+                //_isGenerated = true;
             }
 
             else
             {
                 foreach (Transform point in spawnPoints)
                 {
-                    EnemyInit(enemyPrefab, point);
+                    //EnemyInit(enemyPrefab, point);
                 }
-                _isGenerated = true;
+               // _isGenerated = true;
                 
             }
-            
 
+            return _enemies;
         }
 
+        
         private void EnemyInit(GameObject enemyPrefab, Transform spawnPoint)
         {
              GameObject enemy = GameObject.Instantiate(enemyPrefab, spawnPoint);
@@ -48,8 +56,15 @@ namespace EnemySystem
             
         }
 
-        private void ArmyMove(Transform controller)
+        public void ArmyMove( List<GameObject> enemies, float speed)
         {
+            GameObject controller = new GameObject("parent");
+            foreach (GameObject enemy in enemies)
+                enemy.transform.SetParent(controller.transform);
+            controller.transform.Translate(Vector3.down * speed * Time.deltaTime);
+            
+            
+            
             
         }
     }

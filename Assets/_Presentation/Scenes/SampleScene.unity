@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRandom: 1
-  armySpeed: 10
+  armySpeed: 1
   spawnPoints:
   - {fileID: 2121198819}
   - {fileID: 1517974282}
@@ -239,7 +239,7 @@ MonoBehaviour:
   - {fileID: 1036134090}
   - {fileID: 1632356122}
   enemyPrefab: {fileID: 3753086966472306454, guid: 8d34b98f24b50aa418c02ee1939f281b, type: 3}
-  time: 2
+  time: 5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

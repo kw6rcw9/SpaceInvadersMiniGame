@@ -12,8 +12,11 @@ namespace EnemySystem
         [SerializeField] private List<Transform> spawnPoints;
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private float time;
-        private EnemyArmy _enemyArmy;
-        private bool _inGame = true;
+        private IArmyLogic _enemyArmy;
+        private bool _isGenerated = false;
+
+        private List<GameObject> _enemiesList;
+        //private bool _inGame = true;
         private void Awake()
         {
             _enemyArmy = new EnemyArmy();
@@ -26,7 +29,7 @@ namespace EnemySystem
 
         private void Update()
         {
-            
+            ArmyMove(_enemiesList);
         }
 
         IEnumerator ArmyGenerator()
@@ -34,10 +37,23 @@ namespace EnemySystem
             while (true)
             {
                 yield return new WaitForSeconds(time);
-                _enemyArmy.ArmyGenerator(armySpeed, enemyPrefab, spawnPoints, isRandom);
-                
+                _enemiesList = _enemyArmy.ArmyGenerator( enemyPrefab, spawnPoints, isRandom);
+                _isGenerated = true;
+
             }
           
         }
+
+        private void ArmyMove(List<GameObject> enemies)
+        {
+            if (_isGenerated)
+            {
+                _enemyArmy.ArmyMove(enemies, armySpeed);
+                
+            }
+            
+        }
+        
+        
     }
 }
