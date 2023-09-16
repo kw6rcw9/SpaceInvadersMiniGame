@@ -6,11 +6,11 @@ using Random = UnityEngine.Random;
 
 namespace EnemySystem
 {
-    public class EnemyArmy: IArmyLogic
+    public class EnemyArmyGenerator
     {
-        //private bool _isGenerated = false;
+     
         private List<GameObject> _enemies;
-        //private GameObject _parent = new ;
+     
        
 
         public List<GameObject> ArmyGenerator( GameObject enemyPrefab, List<Transform> spawnPoints, bool isRandom)
@@ -31,16 +31,16 @@ namespace EnemySystem
                     }
                 }
                 
-                //_isGenerated = true;
+             
             }
 
             else
             {
                 foreach (Transform point in spawnPoints)
                 {
-                    //EnemyInit(enemyPrefab, point);
+                    EnemyInit(enemyPrefab, point);
                 }
-               // _isGenerated = true;
+              
                 
             }
 
@@ -55,17 +55,6 @@ namespace EnemySystem
                 
             
         }
-
-        public void ArmyMove( List<GameObject> enemies, float speed)
-        {
-            GameObject controller = new GameObject("parent");
-            foreach (GameObject enemy in enemies)
-                enemy.transform.SetParent(controller.transform);
-            controller.transform.Translate(Vector3.down * speed * Time.deltaTime);
-            
-            
-            
-            
-        }
+        
     }
 }

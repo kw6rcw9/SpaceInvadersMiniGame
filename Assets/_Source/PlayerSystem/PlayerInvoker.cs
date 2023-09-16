@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Movement;
 using UnityEngine;
 
 namespace PlayerSystem
@@ -7,6 +10,7 @@ namespace PlayerSystem
         private PlayerMovement _playerMovement;
         private Player _player;
         private PlayerCombat _playerCombat;
+       
 
         public PlayerInvoker(Player player)
         {
@@ -14,9 +18,9 @@ namespace PlayerSystem
             _playerCombat = new PlayerCombat();
             _player = player;
         }
-        public void Move(float inputX)
+        public async void Move(float inputX)
         {
-            _playerMovement.Move(inputX, _player.MovementSpeed, _player.transform);
+            await _playerMovement.Move(inputX, _player.MovementSpeed, new List<Transform>(){_player.transform});
         }
 
         public void Shoot()

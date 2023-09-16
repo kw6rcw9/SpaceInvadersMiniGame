@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using PlayerSystem;
 using UnityEngine;
 
@@ -20,10 +21,10 @@ namespace InputSystem
             ReadShoot();
         }
 
-        private void ReadMove()
+        private  void ReadMove()
         {
             float x = Input.GetAxis("Horizontal");
-            _playerInvoker.Move(x);
+             _playerInvoker.Move(x);
             
         }
 

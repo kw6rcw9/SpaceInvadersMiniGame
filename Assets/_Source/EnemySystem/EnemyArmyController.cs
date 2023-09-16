@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Movement;
 using UnityEngine;
 
 namespace EnemySystem
@@ -12,14 +14,17 @@ namespace EnemySystem
         [SerializeField] private List<Transform> spawnPoints;
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private float time;
-        private IArmyLogic _enemyArmy;
-        private bool _isGenerated = false;
+        [SerializeField] private float distanceY;
+        private EnemyArmyGenerator _enemyArmy;
+        private ArmyMovement _armyMovement;
 
+      
         private List<GameObject> _enemiesList;
         //private bool _inGame = true;
         private void Awake()
         {
-            _enemyArmy = new EnemyArmy();
+            _enemyArmy = new EnemyArmyGenerator();
+            _armyMovement = new ArmyMovement();
         }
 
         private void Start()
@@ -27,31 +32,31 @@ namespace EnemySystem
             StartCoroutine(ArmyGenerator());
         }
 
-        private void Update()
-        {
-            ArmyMove(_enemiesList);
-        }
+      
 
         IEnumerator ArmyGenerator()
         {
             while (true)
             {
+                
                 yield return new WaitForSeconds(time);
                 _enemiesList = _enemyArmy.ArmyGenerator( enemyPrefab, spawnPoints, isRandom);
-                _isGenerated = true;
-
+               
+                ArmyMove(_enemiesList);
+                //Destroy(_armyMovement.Controller);
+               
             }
           
         }
 
-        private void ArmyMove(List<GameObject> enemies)
+        private async void ArmyMove(List<GameObject> enemies)
         {
-            if (_isGenerated)
-            {
-                _enemyArmy.ArmyMove(enemies, armySpeed);
-                
-            }
-            
+            //if(_isGenerated)
+            await _armyMovement.Move(distanceY, enemies, armySpeed);
+
+
+
+
         }
         
         
