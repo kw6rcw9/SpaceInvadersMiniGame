@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
-public class Game : MonoBehaviour
+namespace GameSystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Game
     {
-        
-    }
+        public void Lose()
+        {
+            Time.timeScale = 0f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
+
+        public void Restart()
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(0);
+
+        }
+
+        public void Win()
+        {
+            //TODO
+        }
+    
     }
 }
