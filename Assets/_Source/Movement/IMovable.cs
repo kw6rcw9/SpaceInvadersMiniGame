@@ -6,9 +6,9 @@ namespace Movement
 {
     public interface IMovable
     {
-        async Task Move(float dist, List<GameObject> objects, float speed)
-        {
-            await Task.Yield();
-        }
+        public void Move(float dist, float speed, List<Transform> objects);
+
+
+
     }
 }

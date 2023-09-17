@@ -8,17 +8,12 @@ namespace EnemySystem
 {
     public class EnemyArmyGenerator
     {
-     
-        private List<GameObject> _enemies;
-     
-       
+        private List<Transform> _enemies  = new List<Transform>();
 
-        public List<GameObject> ArmyGenerator( GameObject enemyPrefab, List<Transform> spawnPoints, bool isRandom)
+
+        public List<Transform> ArmyGenerator( GameObject enemyPrefab, List<Transform> spawnPoints, bool isRandom)
         {
 
-            _enemies = new List<GameObject>();
-
-            
             if (isRandom)
             {
                 foreach (Transform point in spawnPoints)
@@ -51,7 +46,7 @@ namespace EnemySystem
         private void EnemyInit(GameObject enemyPrefab, Transform spawnPoint)
         {
              GameObject enemy = GameObject.Instantiate(enemyPrefab, spawnPoint);
-             _enemies.Add(enemy);
+             _enemies.Add(enemy.transform);
                 
             
         }
