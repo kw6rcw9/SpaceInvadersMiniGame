@@ -1,3 +1,4 @@
+using ScoreSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
@@ -15,13 +16,14 @@ namespace GameSystem
         public void Restart()
         {
             Time.timeScale = 1f;
+            Score.ResetScore();
             SceneManager.LoadScene(0);
 
         }
 
         public void Win()
         {
-            //TODO
+            Time.timeScale = 0f;
         }
     
     }
