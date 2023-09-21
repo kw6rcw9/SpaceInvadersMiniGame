@@ -8,11 +8,12 @@ namespace AmmoSystem
     [RequireComponent(typeof(Rigidbody2D))]
     public class Bullet : MonoBehaviour
     {
-        [SerializeField] private int damage;
+        [field: SerializeField] public int Damage { get; private set; }
         [SerializeField] private float speed;
         [SerializeField] private Rigidbody2D rb;
-     
-        
+        //[SerializeField] private LayerMask enemyMask;
+
+
         private void Update()
         {
             MoveForward();
@@ -27,12 +28,15 @@ namespace AmmoSystem
 
        
 
-        private void OnCollisionEnter2D(Collision2D col)
+        private  void OnTriggerEnter2D(Collider2D col) 
         {
-            if ( col.gameObject.layer == 7)
-            {
+            //if ( col.gameObject.layer == enemyMask)
+            //{
+                
+                Debug.Log("collide");
                 Destroy(gameObject);
-            }
+           // }
+            
         }
 
         IEnumerator Lifetime()

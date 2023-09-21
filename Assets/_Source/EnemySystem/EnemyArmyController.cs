@@ -68,7 +68,6 @@ namespace EnemySystem
 
             else if(parent.transform.position.y >= _startPos.y + distanceY)
             {
-                Debug.Log(_startPos.y);
                 _armyMovement.Move( distanceY,  armySpeed, enemiesList);
             }
 

@@ -1,19 +1,26 @@
 using System;
 using AmmoSystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace EnemySystem
 {
     public class Enemy : MonoBehaviour
     {
         [SerializeField] private int hp;
-        
-        /*private void TakeDamage(int damage)
+        [SerializeField] private Bullet bullet;
+
+        private void OnTriggerEnter2D(Collider2D col)
         {
-            Debug.Log("dd");
+            TakeDamage(bullet.Damage);
+        }
+
+        private void TakeDamage(int damage)
+        {
+            
+            hp -= damage;
             if(hp <= 0)
                 Destroy(gameObject);
-            hp -= damage;
-        }*/
+        }
     }
 }

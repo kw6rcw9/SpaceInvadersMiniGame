@@ -31,7 +31,14 @@ namespace Movement
         private void SetParent(List<Transform> enemies)
         {
             foreach (Transform enemy in enemies)
-                enemy.SetParent(_parent.transform);
+            {
+                if (enemy == null) continue;
+                if (enemy.parent != _parent.transform)
+                    enemy.SetParent(_parent.transform);
+
+
+            }
+            
         }
 
     }

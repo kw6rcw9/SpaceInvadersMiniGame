@@ -8,9 +8,13 @@ namespace EnemySystem
 {
     public class EnemyArmyGenerator
     {
-        private List<Transform> _enemies  = new List<Transform>();
+        private List<Transform> _enemies;
 
+        public EnemyArmyGenerator()
+        {
+            _enemies = new List<Transform>();
 
+        }
         public List<Transform> ArmyGenerator( GameObject enemyPrefab, List<Transform> spawnPoints, bool isRandom)
         {
 
@@ -18,27 +22,21 @@ namespace EnemySystem
             {
                 foreach (Transform point in spawnPoints)
                 {
-                    int rnd = Random.Range(0, 2);
-                    if (rnd == 1)
+                    int rnd = Random.Range(0, 5);
+                    if (rnd != 4 && rnd != 3 )
                     {
                         EnemyInit(enemyPrefab, point);
                         
                     }
                 }
-                
-             
             }
-
             else
             {
                 foreach (Transform point in spawnPoints)
                 {
                     EnemyInit(enemyPrefab, point);
                 }
-              
-                
             }
-
             return _enemies;
         }
 

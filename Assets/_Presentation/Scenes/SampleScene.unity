@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRandom: 1
-  armySpeed: 2
+  armySpeed: 1
   spawnPoints:
   - {fileID: 1517974282}
   - {fileID: 1227913632}
@@ -232,9 +232,9 @@ MonoBehaviour:
   - {fileID: 1809290467}
   - {fileID: 1555944701}
   - {fileID: 1036134090}
-  generatePause: 3
-  distanceY: -2.5
-  movePause: 2
+  generatePause: 4
+  distanceY: -2
+  movePause: 3
   enemiesList: []
   parent: {fileID: 1993757146}
   enemyPrefab: {fileID: 3753086966472306454, guid: 8d34b98f24b50aa418c02ee1939f281b, type: 3}
@@ -438,7 +438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1233898929
 BoxCollider2D:
   m_ObjectHideFlags: 0
