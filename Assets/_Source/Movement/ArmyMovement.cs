@@ -32,8 +32,10 @@ namespace Movement
         {
             foreach (Transform enemy in enemies)
             {
-                if (enemy == null) continue;
-                if (enemy.parent != _parent.transform)
+                if (enemy == null)
+                    enemies.Remove(enemy);
+                
+                else if (enemy.parent != _parent.transform)
                     enemy.SetParent(_parent.transform);
 
 

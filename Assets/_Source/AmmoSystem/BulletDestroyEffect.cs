@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class BulletDestroyEffect : MonoBehaviour
+namespace AmmoSystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public class BulletDestroyEffect : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private GameObject effectPrefab;
+        [SerializeField] private Bullet bullet;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void OnEnable()
+        {
+            bullet.ExplosionAction += Explosion;
+        }
+
+        private void OnDisable()
+        {
+            bullet.ExplosionAction -= Explosion;
+        }
+
+        void Explosion(Transform bulletPos)
+        {
+            GameObject exp = Instantiate(effectPrefab, bulletPos.position, bulletPos.rotation);
+            Destroy(exp, 0.75f);
+        }
+
     }
 }

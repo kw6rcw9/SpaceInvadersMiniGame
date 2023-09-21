@@ -1,5 +1,6 @@
 using System;
 using AmmoSystem;
+using ScoreSystem;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,6 +10,9 @@ namespace EnemySystem
     {
         [SerializeField] private int hp;
         [SerializeField] private Bullet bullet;
+        [SerializeField] private int scorePointsForDeath;
+        
+       
 
         private void OnTriggerEnter2D(Collider2D col)
         {
@@ -19,8 +23,13 @@ namespace EnemySystem
         {
             
             hp -= damage;
-            if(hp <= 0)
+            if (hp <= 0)
+            {
+                Score.IncreaseScoreCount(scorePointsForDeath);
+                Debug.Log(Score.ScoreCount);
                 Destroy(gameObject);
+                
+            }
         }
     }
 }

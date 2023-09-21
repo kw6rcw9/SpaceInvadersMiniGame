@@ -232,9 +232,9 @@ MonoBehaviour:
   - {fileID: 1809290467}
   - {fileID: 1555944701}
   - {fileID: 1036134090}
-  generatePause: 4
+  generatePause: 5
   distanceY: -2
-  movePause: 3
+  movePause: 5
   enemiesList: []
   parent: {fileID: 1993757146}
   enemyPrefab: {fileID: 3753086966472306454, guid: 8d34b98f24b50aa418c02ee1939f281b, type: 3}
