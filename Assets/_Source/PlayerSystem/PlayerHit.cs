@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using GameSystem;
 using UnityEngine;
@@ -6,6 +7,7 @@ namespace PlayerSystem
 {
     public class PlayerHit
     {
+        public static Action DamageAction;
         private Game _game;
         public PlayerHit()
         {
@@ -14,7 +16,7 @@ namespace PlayerSystem
         
         public void TakeDamage(Player player, int damage)
         {
-            
+            DamageAction?.Invoke();
            player.Hp -= damage;
             if (player.Hp <= 0)
             {
