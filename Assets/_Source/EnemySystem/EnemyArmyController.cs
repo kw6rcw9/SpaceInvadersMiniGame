@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Movement;
 using Unity.VisualScripting;
@@ -42,6 +43,7 @@ namespace EnemySystem
         private void Update()
         {
             StartCoroutine(ArmyMove());
+            RemoveNullObjects();
         }
 
 
@@ -71,6 +73,12 @@ namespace EnemySystem
                 _armyMovement.Move( distanceY,  armySpeed, enemiesList);
             }
 
+        }
+
+        private void RemoveNullObjects()
+        {
+            List<Transform> newEnemies = enemiesList.Where(x => x == null).ToList();
+            enemiesList = enemiesList.Except(newEnemies).ToList();
         }
     }
 }

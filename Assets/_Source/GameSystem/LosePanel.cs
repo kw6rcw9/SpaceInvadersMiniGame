@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class LosePanel : MonoBehaviour
+namespace GameSystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public class LosePanel : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private GameObject losePanel;
+      
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void OnEnable()
+        {
+            Game.LoseAction += ShowPanel;
+        }
+
+        private void OnDisable()
+        {
+            Game.LoseAction -= ShowPanel;
+
+        }
+
+        private void ShowPanel()
+        {
+            losePanel.SetActive(true);
+            
+        }
+
     }
 }

@@ -26,7 +26,6 @@ namespace EnemySystem
             if (hp <= 0)
             {
                 Score.IncreaseScoreCount(scorePointsForDeath);
-                Debug.Log(Score.ScoreCount);
                 Destroy(gameObject);
                 
             }

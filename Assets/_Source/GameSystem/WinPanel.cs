@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class WinPanel : MonoBehaviour
+namespace GameSystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public class WinPanel : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private GameObject winPanel;
+      
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void OnEnable()
+        {
+            Game.WinAction += ShowPanel;
+        }
+
+        private void OnDisable()
+        {
+           Game.WinAction -= ShowPanel;
+
+        }
+
+        private void ShowPanel()
+        {
+            winPanel.SetActive(true);
+            
+        }
+    
     }
 }
