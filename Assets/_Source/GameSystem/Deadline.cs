@@ -15,7 +15,6 @@ namespace GameSystem
       
          if (col.gameObject.layer != 6 && col.gameObject.layer != 8 )
          {
-            Debug.Log("collide");
             _game.Lose();
          }
       }

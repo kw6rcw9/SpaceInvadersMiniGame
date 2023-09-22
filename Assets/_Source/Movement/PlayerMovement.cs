@@ -17,9 +17,6 @@ namespace Movement
 
         }
 
-        public void Move<T>(float dist, float speed, List<T> objects) where T : Transform
-        {
-            throw new System.NotImplementedException();
-        }
+        
     }
 }

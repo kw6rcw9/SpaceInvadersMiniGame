@@ -43,7 +43,7 @@ namespace EnemySystem
         
         private void EnemyInit(GameObject enemyPrefab, Transform spawnPoint)
         {
-             GameObject enemy = GameObject.Instantiate(enemyPrefab, spawnPoint);
+             GameObject enemy = GameObject.Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation, spawnPoint);
              _enemies.Add(enemy.transform);
                 
             

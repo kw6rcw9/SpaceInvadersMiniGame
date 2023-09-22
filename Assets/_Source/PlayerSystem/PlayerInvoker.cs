@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CombatSystem;
 using Movement;
 using UnityEngine;
 
@@ -9,13 +10,13 @@ namespace PlayerSystem
     {
         private IMovable _playerMovement;
         private Player _player;
-        private PlayerCombat _playerCombat;
+        private Shooting _playerCombat;
        
 
         public PlayerInvoker(Player player)
         {
             _playerMovement = new PlayerMovement();
-            _playerCombat = new PlayerCombat();
+            _playerCombat = new Shooting();
             _player = player;
         }
         public  void Move(float inputX)
@@ -27,5 +28,7 @@ namespace PlayerSystem
         {
             _playerCombat.Shoot(_player.FirePoint, _player.BulletPrefab);
         }
+
+        
     }
 }

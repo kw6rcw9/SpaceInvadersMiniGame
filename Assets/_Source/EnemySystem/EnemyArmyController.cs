@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CombatSystem;
+using GameSystem;
 using Movement;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace EnemySystem
 {
@@ -21,14 +24,23 @@ namespace EnemySystem
         [SerializeField]private List<Transform> enemiesList;
         [SerializeField] private GameObject parent;
         [SerializeField] private GameObject enemyPrefab;
+        [SerializeField] private int maxEnemies;
+        [SerializeField] private int minShootingDelay;
+        [SerializeField] private int maxShootingDelay;
         private EnemyArmyGenerator _enemyArmy;
         private IMovable _armyMovement;
+        private Shooting _armyShooting;
         private Vector3 _startPos;
+        private Game _game;
+        
 
         private void Awake()
         {
+            
             _enemyArmy = new EnemyArmyGenerator();
             _armyMovement = new ArmyMovement(parent);
+            _armyShooting = new Shooting();
+            _game = new Game();
 
 
         }
@@ -37,19 +49,21 @@ namespace EnemySystem
         {
             StartCoroutine(ArmyGenerator());
             _startPos = parent.transform.position;
+            StartCoroutine(ArmyShoot());
 
         }
 
         private void Update()
         {
             StartCoroutine(ArmyMove());
-            RemoveNullObjects();
+            EmptyArmyChecker();
+            
         }
 
 
         IEnumerator ArmyGenerator()
         {
-            while (true)
+            while (enemiesList.Count < maxEnemies)
             {
                 yield return new WaitForSeconds(generatePause);
                 enemiesList = _enemyArmy.ArmyGenerator( enemyPrefab, spawnPoints, isRandom);
@@ -71,14 +85,37 @@ namespace EnemySystem
             else if(parent.transform.position.y >= _startPos.y + distanceY)
             {
                 _armyMovement.Move( distanceY,  armySpeed, enemiesList);
+                
             }
 
         }
 
-        private void RemoveNullObjects()
+        private IEnumerator ArmyShoot()
         {
-            List<Transform> newEnemies = enemiesList.Where(x => x == null).ToList();
-            enemiesList = enemiesList.Except(newEnemies).ToList();
+            yield return new WaitForSeconds(generatePause);
+            while (enemiesList.Count != enemiesList.Where(x => x == null).ToList().Count)
+            {
+               
+                    yield return new WaitForSeconds(Random.Range(minShootingDelay, maxShootingDelay));
+                    List<Transform> newEnemyList = enemiesList.Where(x => x != null).ToList();
+                    int index = Random.Range(0, newEnemyList.Count);
+                    _armyShooting.Shoot(newEnemyList[index].GetChild(0), 
+                        newEnemyList[index].GetComponent<Enemy>().BulletPrefab);
+                    
+                
+
+            }
+            
         }
+
+        private void EmptyArmyChecker()
+        {
+            if(enemiesList.Count == enemiesList.Where(x => x == null).ToList().Count
+               && enemiesList.Count > 0)
+                _game.Win();
+                
+        }
+
+       
     }
 }

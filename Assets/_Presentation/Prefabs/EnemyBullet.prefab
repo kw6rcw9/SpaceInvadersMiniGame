@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 5962899162716207574}
   - component: {fileID: 9044024756009340182}
   - component: {fileID: 3591628512719713262}
-  - component: {fileID: -5054795198072912381}
   - component: {fileID: -3227171230753704186}
-  - component: {fileID: 8737419386666039927}
+  - component: {fileID: -2953965495215778331}
   m_Layer: 8
-  m_Name: Bullet
+  m_Name: EnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3776853289080163961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.67, y: 0.10996878, z: 0}
-  m_LocalScale: {x: 0.16, y: 0.16, z: 0.16}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -109,25 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-5054795198072912381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3776853289080163961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 664fc1ccf19e69848b97462593512414, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Damage>k__BackingField: 2
-  speed: 200
-  rb: {fileID: 3591628512719713262}
-  destroyTime: 2
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!58 &-3227171230753704186
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -144,7 +124,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &8737419386666039927
+--- !u!114 &-2953965495215778331
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,8 +133,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3776853289080163961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd255c70838974c46910fa7dafd3de7d, type: 3}
+  m_Script: {fileID: 11500000, guid: c6f72e8a2b0ecd54f923a13bbf9239bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectPrefab: {fileID: 2986858564201778088, guid: a8cc6bafdd42b434bbe9f2e82f148454, type: 3}
-  bullet: {fileID: -5054795198072912381}
+  <Damage>k__BackingField: 1
+  speed: 200
+  rb: {fileID: 3591628512719713262}
+  destroyTime: 2

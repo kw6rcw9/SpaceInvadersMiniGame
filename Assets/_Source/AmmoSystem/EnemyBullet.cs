@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using EnemySystem;
 using PlayerSystem;
 using UnityEngine;
@@ -8,15 +7,21 @@ using UnityEngine;
 namespace AmmoSystem
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Bullet : MonoBehaviour
+    public class EnemyBullet : MonoBehaviour
     {
         [field: SerializeField] public int Damage { get; private set; }
         [SerializeField] private float speed;
         [SerializeField] private Rigidbody2D rb;
 
         [SerializeField] private float destroyTime;
-        public Action<Transform> ExplosionAction;
-     
+        private PlayerHit _playerHit;
+
+        private void Start()
+        {
+            _playerHit = new PlayerHit();
+        }
+
+
         private void Update()
         {
             MoveForward();
@@ -25,7 +30,7 @@ namespace AmmoSystem
 
         private void MoveForward()
         {
-            rb.AddForce(transform.up * speed * Time.deltaTime, ForceMode2D.Impulse);
+            rb.AddForce(-transform.up * speed * Time.deltaTime, ForceMode2D.Impulse);
             
         }
 
@@ -33,11 +38,13 @@ namespace AmmoSystem
 
         private  void OnTriggerEnter2D(Collider2D col) 
         {
-            if ( col.gameObject.GetComponent<Enemy>())
+            if ( col.gameObject.GetComponent<Player>())
             {
-                col.gameObject.GetComponent<Enemy>().TakeDamage(Damage);
-                ExplosionAction?.Invoke(gameObject.transform);
-                Destroy(gameObject);
+                _playerHit.TakeDamage(col.GetComponent<Player>(), Damage);
+                StartCoroutine(_playerHit.ChangeColor(col.transform));
+                Debug.Log("attack");
+
+                gameObject.GetComponent<Renderer>().enabled = false;
             }
             
         }
