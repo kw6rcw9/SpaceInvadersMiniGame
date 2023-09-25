@@ -1,9 +1,8 @@
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
 using PlayerSystem;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 using Image = UnityEngine.UI.Image;
 
 namespace UISystem

@@ -1,14 +1,14 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
 using CombatSystem;
 using GameSystem;
 using Movement;
-using Unity.VisualScripting;
+
 using UnityEngine;
-using UnityEngine.Serialization;
+
 using Random = UnityEngine.Random;
 
 namespace EnemySystem
@@ -33,7 +33,6 @@ namespace EnemySystem
         private Vector3 _startPos;
         private Game _game;
         
-
         private void Awake()
         {
             
@@ -41,8 +40,6 @@ namespace EnemySystem
             _armyMovement = new ArmyMovement(parent);
             _armyShooting = new Shooting();
             _game = new Game();
-
-
         }
 
         private void Start()
@@ -59,8 +56,7 @@ namespace EnemySystem
             EmptyArmyChecker();
             
         }
-
-
+        
         IEnumerator ArmyGenerator()
         {
             while (enemiesList.Count < maxEnemies)
@@ -94,15 +90,16 @@ namespace EnemySystem
         {
             yield return new WaitForSeconds(generatePause);
             while (enemiesList.Count != enemiesList.Where(x => x == null).ToList().Count)
-            {
-               
-                    yield return new WaitForSeconds(Random.Range(minShootingDelay, maxShootingDelay));
-                    List<Transform> newEnemyList = enemiesList.Where(x => x != null).ToList();
-                    int index = Random.Range(0, newEnemyList.Count);
+            { 
+                yield return new WaitForSeconds(Random.Range(minShootingDelay, maxShootingDelay));
+                List<Transform> newEnemyList = enemiesList.Where(x => x != null).ToList();
+                int index = Random.Range(0, newEnemyList.Count);
+                if (newEnemyList.Count > 0)
+                {
                     _armyShooting.Shoot(newEnemyList[index].GetChild(0), 
                         newEnemyList[index].GetComponent<Enemy>().BulletPrefab);
                     
-                
+                }
 
             }
             
@@ -110,7 +107,8 @@ namespace EnemySystem
 
         private void EmptyArmyChecker()
         {
-            if(enemiesList.Count == enemiesList.Where(x => x == null).ToList().Count
+            if(enemiesList.Count == maxEnemies
+               && enemiesList.Count == enemiesList.Where(x => x == null).ToList().Count
                && enemiesList.Count > 0)
                 _game.Win();
                 

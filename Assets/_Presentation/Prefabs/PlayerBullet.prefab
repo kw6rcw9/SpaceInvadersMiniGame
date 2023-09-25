@@ -125,7 +125,7 @@ MonoBehaviour:
   speed: 200
   rb: {fileID: 3591628512719713262}
   destroyTime: 2
-  enemyMask:
+  _enemyMask:
     serializedVersion: 2
     m_Bits: 128
 --- !u!58 &-3227171230753704186

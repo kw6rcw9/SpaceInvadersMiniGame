@@ -12,12 +12,13 @@ namespace PlayerSystem
         public PlayerHit()
         {
             _game = new Game();
+            
         }
         
         public void TakeDamage(Player player, int damage)
         {
             DamageAction?.Invoke();
-           player.Hp -= damage;
+            player.Hp -= damage;
             if (player.Hp <= 0)
             {
                 _game.Lose();

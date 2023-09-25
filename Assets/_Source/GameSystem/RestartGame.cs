@@ -1,6 +1,6 @@
-using ScoreSystem;
+
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 namespace GameSystem
 {

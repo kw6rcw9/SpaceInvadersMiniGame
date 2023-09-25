@@ -139,4 +139,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 1
   speed: 200
   rb: {fileID: 3591628512719713262}
+  player: {fileID: 8655493683220977136, guid: 6d594c2036a31e248afe3926ba20317b, type: 3}
+  playerRenderer: {fileID: 8655493683220977150, guid: 6d594c2036a31e248afe3926ba20317b, type: 3}
+  selfRenderer: {fileID: 9044024756009340182}
   destroyTime: 2

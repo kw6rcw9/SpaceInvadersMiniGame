@@ -2,7 +2,6 @@ using System;
 using ScoreSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Video;
 
 namespace GameSystem
 {

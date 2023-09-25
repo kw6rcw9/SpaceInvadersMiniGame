@@ -16,7 +16,14 @@ namespace AmmoSystem
 
         [SerializeField] private float destroyTime;
         public Action<Transform> ExplosionAction;
-     
+        private EnemyHit _hit;
+        private const int _enemyLayer = 7;
+
+        private void Awake()
+        {
+            _hit = new EnemyHit();
+        }
+
         private void Update()
         {
             MoveForward();
@@ -33,9 +40,10 @@ namespace AmmoSystem
 
         private  void OnTriggerEnter2D(Collider2D col) 
         {
-            if ( col.gameObject.GetComponent<Enemy>())
+            
+            if ( col.gameObject.layer == _enemyLayer)
             {
-                col.gameObject.GetComponent<Enemy>().TakeDamage(Damage);
+                _hit.TakeDamage(col.GetComponent<Enemy>(), Damage);
                 ExplosionAction?.Invoke(gameObject.transform);
                 Destroy(gameObject);
             }

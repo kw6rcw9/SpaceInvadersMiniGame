@@ -1,26 +1,25 @@
-using System;
-using AmmoSystem;
+
+
 using ScoreSystem;
 using UnityEngine;
-using UnityEngine.Serialization;
+
 
 namespace EnemySystem
 {
     public class Enemy : MonoBehaviour
     {
-        [SerializeField] private int hp;
+        [field: SerializeField] public int Hp { get;  set; }
         [field: SerializeField] public GameObject BulletPrefab { get; private set; }
-        [SerializeField] private int scorePointsForDeath;
+        [field: SerializeField] public int ScorePointsForDeath { get; private set; }
 
-       
 
         public void TakeDamage(int damage)
         {
             
-            hp -= damage;
-            if (hp <= 0)
+            Hp -= damage;
+            if (Hp <= 0)
             {
-                Score.IncreaseScoreCount(scorePointsForDeath);
+                Score.IncreaseScoreCount(ScorePointsForDeath);
                 Destroy(gameObject);
                 
             }

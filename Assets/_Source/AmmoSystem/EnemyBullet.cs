@@ -1,6 +1,6 @@
-using System;
+
 using System.Collections;
-using EnemySystem;
+
 using PlayerSystem;
 using UnityEngine;
 
@@ -12,9 +12,10 @@ namespace AmmoSystem
         [field: SerializeField] public int Damage { get; private set; }
         [SerializeField] private float speed;
         [SerializeField] private Rigidbody2D rb;
-
+        [SerializeField] private Renderer selfRenderer;
         [SerializeField] private float destroyTime;
         private PlayerHit _playerHit;
+        private const int _playerLayer = 6;
 
         private void Start()
         {
@@ -33,23 +34,17 @@ namespace AmmoSystem
             rb.AddForce(-transform.up * speed * Time.deltaTime, ForceMode2D.Impulse);
             
         }
-
-       
-
+        
         private  void OnTriggerEnter2D(Collider2D col) 
         {
-            if ( col.gameObject.GetComponent<Player>())
+            if ( col.gameObject.layer == _playerLayer)
             {
-                _playerHit.TakeDamage(col.GetComponent<Player>(), Damage);
+                _playerHit.TakeDamage(col.gameObject.GetComponent<Player>(), Damage);
                 StartCoroutine(_playerHit.ChangeColor(col.transform));
-                Debug.Log("attack");
-
-                gameObject.GetComponent<Renderer>().enabled = false;
+               selfRenderer.enabled = false;
             }
             
         }
-
-        
 
         IEnumerator Lifetime()
         {

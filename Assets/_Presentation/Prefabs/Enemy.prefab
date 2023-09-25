@@ -126,9 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b5d01d6d4aec6240b0dfcc1f848b377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 3
+  <Hp>k__BackingField: 3
   <BulletPrefab>k__BackingField: {fileID: 3776853289080163961, guid: 3c073530bc226194e90d8ac29b3fdc0b, type: 3}
-  scorePointsForDeath: 1
+  <ScorePointsForDeath>k__BackingField: 1
 --- !u!50 &-4918654881746000482
 Rigidbody2D:
   serializedVersion: 4
