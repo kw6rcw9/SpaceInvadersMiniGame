@@ -22,15 +22,15 @@ namespace UISystem
 
         private void OnEnable()
         {
-            PlayerHit.DamageAction += GetHit;
+            PlayerHit.DamageAction += GetHitShow;
         }
 
         private void OnDisable()
         {
-            PlayerHit.DamageAction -= GetHit;
+            PlayerHit.DamageAction -= GetHitShow;
         }
 
-        private void GetHit()
+        private void GetHitShow()
         {
             
             _imagesQueue.Dequeue().gameObject.SetActive(false);
